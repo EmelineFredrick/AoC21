@@ -11,28 +11,28 @@ public class Power {
 		int total = gamma * epsilon;
 		return total;
 	}
-
+	
 	int calculateGamma(ArrayList<String> input) {
 		int gamma = 0;
+		//Gamma is base-10 value
 		String tempGamma = "";
+		//tempGamma is string of binary
 		System.out.println(input);
-		for (int i = 0; i < input.size(); i++) {
-			System.out.printf("Byte is: %s \n", input.get(i));
+		for (int num = 0; num < input.get(1).length(); num++) {
+			//System.out.printf("Byte is: %s \n", input.get(num));
 			int one = 0;
 			int zero = 0;
-			for (int x = 0; x < input.get(i).length(); x++) {
-				String character = Character.toString(input.get(i).charAt(x));
-				System.out.printf("\nSingle Character is: %s", character);
+			for (int inList = 0; inList < input.size(); inList++) {
+				String character = Character.toString(input.get(inList).charAt(num));
 				if (character.equals("1")) {
-					System.out.print("\nPlus One!");
+					//System.out.print("\nPlus One!");
 					one++;
 				} else if (character.equals("0")) {
-					System.out.print("\nPlus Zero!");
+					//System.out.print("\nPlus Zero!");
 					zero++;
 				} else {
 					System.out.print("\nERROR: not one or zero!");
 				}
-
 			}
 			if (one > zero) {
 				tempGamma = tempGamma + "1";
@@ -43,9 +43,45 @@ public class Power {
 			}
 			one = 0;
 			zero = 0;
-			System.out.printf("\ntempGamma:  %s \n", tempGamma);
+			//System.out.printf("\nGamma:  %s \n", tempGamma);
 		}
+		gamma = Integer.parseInt(tempGamma, 2);
 		return gamma;
+	}
+	
+	int calculateEpsilon(ArrayList<String> input) {
+		int Epsilon = 0;
+		String tempEpsilon = "";
+		System.out.println(input);
+		for (int num = 0; num < input.get(1).length(); num++) {
+			//System.out.printf("Byte is: %s \n", input.get(num));
+			int one = 0;
+			int zero = 0;
+			for (int inList = 0; inList < input.size(); inList++) {
+				String character = Character.toString(input.get(inList).charAt(num));
+				if (character.equals("1")) {
+					//System.out.print("\nPlus One!");
+					one++;
+				} else if (character.equals("0")) {
+					//System.out.print("\nPlus Zero!");
+					zero++;
+				} else {
+					System.out.print("\nERROR: not one or zero!");
+				}
+			}
+			if (one < zero) {
+				tempEpsilon = tempEpsilon + "1";
+			} else if (zero < one) {
+				tempEpsilon = tempEpsilon + "0";
+			} else {
+				System.out.println("ERROR!");
+			}
+			one = 0;
+			zero = 0;
+			//System.out.printf("\Epsilon:  %s \n", tempEpsilon);
+		}
+		Epsilon = Integer.parseInt(tempEpsilon, 2);
+		return Epsilon;
 	}
 
 }

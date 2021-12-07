@@ -7,7 +7,9 @@ import java.util.ArrayList;
 
 public class Part1 {
 	public static void main(String[] args) {
-		File input = new File("day3Test");
+		//goes through each letter of the byte in order, not first of each
+		//second of each ect.
+		File input = new File("day3Input");
 		ArrayList<String> binary = new ArrayList<String>();
 		Power myPowerLevel = new Power();
 
@@ -20,7 +22,11 @@ public class Part1 {
 				//System.out.println(binary);
 			
 			}
-			myPowerLevel.calculateGamma(binary);
+			int gamma = myPowerLevel.calculateGamma(binary);
+			int epsilon = myPowerLevel.calculateEpsilon(binary);
+			int PowerConsumption = gamma * epsilon;
+			System.out.println(PowerConsumption);
+			
 		} catch (FileNotFoundException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
